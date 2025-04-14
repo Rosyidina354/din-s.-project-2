@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Kedai Warung Ma'remponk</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    >
+
+    
+    <!-- Feather head -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <!-- My Style -->
+    <link rel="stylesheet" href="css/style.css" />
+
+    <!-- AlpineJS -->
+     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
+    <!-- App -->
+     <script src="src/app.js" async></script>
+
+     <!-- Midtrans -->
+       <script type="text/javascript" src="https://app.stg.midtrans.com/snap/snap.js"
+        data-client-key="SB-Mid-client-CnFksCeHRAbbpaOZ"></script>
+        <script src="https://app.sandbox.midtrans.com/snap/snap.js" data-client-key="SB-Mid-client-XXXXXX"></script>
+
+  </head>
+
+  <body>
+
+    <!-- Navbar Start -->
+     <nav class="navbar" x-data>
+        <a href="#" class="navbar-logo">Warung<span>Ma'remponk</span>.</a>
+
+        <div class="navbar-nav">
+            <a href="#">Home</a> 
+            <a href="#about">Tentang Kami</a>
+            <a href="#menu">🔥menu🔥</a>
+            <a href="#marketplace">Marketplace</a>
+            <a href="#contact">Kontak</a>
+        </div>
+
+        <div class="navbar-extra">
+            <a href="#" id="search-button"><i data-feather="search"></i></a>
+            <a href="#" id="shopping-cart-button">
+              <i data-feather="shopping-cart"></i>
+              <span class="quantity-badge" x-show="$store.cart.quantity" x-text="$store.cart.quantity"></span>            
+            </a>
+            <a href="#" id="hamburger-menu"><i data-feather="menu"></i></a>
+        </div>
+
+        <!-- Search Form Start -->
+         <div class="search-form">
+          <input type="search" id="search-box" placeholder="search here...">
+          <label for="search-box"><i data-feather="search"></i></label>
+         </div>
+        <!-- Search Form end -->
+
+        <!-- Shopping Card start -->
+         <div class="shopping-cart">
+         <div class="cart-items-item">
+          <template x-for="(item, index) in $store.cart.items" x-keys="index">
+          <div class="cart-item">
+            <img :src="`img/BS/${item.img}`" :alt="item.name">
+            <div class="item-detail">
+              <h3 x-text="item.name"></h3>
+              <div class="item-price">
+                <span x-text="rupiah(item.price)"></span> &times;
+                <button id="remove" @click="$store.cart.remove(item.id)">&minus;</button>
+                <span x-text="item.quantity"></span>
+                <button id="add" @click="$store.cart.add(item)">&plus;</button> &equals;
+                <span x-text="rupiah(item.total)"></span>
+              </div>
+            </div>
+          </div>
+          </template>
+          <h4 x-show="!$store.cart.items.length" style="margin-top: 1rem;">Cart Is Empety</h4>
+          <h4 x-show="$store.cart.items.length">Total : <span x-text="rupiah($store.cart.total)"></span></h4>
+
+          <div class="form-container" x-show="$store.cart.items.length">
+            <form action="" id="checkoutForm">
+              <input type="hidden" name="items" x-model="JSON.stringify($store.cart.items)">
+              <input type="hidden" name="items" x-model="$store.cart.total">
+            <h5>Customer Detail</h5>
+
+            <label for="name">
+              <span>Name</span>
+              <input type="text" name="name" id="name">
+            </label>
+
+            <label for="email">
+              <span>Email</span>
+              <input type="email" name="email" id="email">
+            </label>
+
+            <label for="phone">
+              <span>Phone</span>
+              <input type="number" name="phone" id="phone" autocomplete="off">
+            </label>
+            <button class="checkout-button disabled" type="submit" id="checkout-button" value="checkout" value="checkout">Checkout</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+      <!-- Shoping Card end -->
+    <!-- Navbar End -->
+
+    <!-- Hero Section Start -->
+     <section class="hero" id="home">
+      <main class="content1">
+        <h1>Kenikmatan Dalam Setiap <span>Suapan</span></h1>
+        <p>Rasakan sensasi lezat yang tak terlupakan di setiap gigitan</p>
+       
+      </main>
+     </section>
+    <!-- Hero Section End -->
+
+    <!-- About Section start -->
+
+    <section id="about" class="about">
+  <div class="container">
+    <h2 class="section-title"><span>Tentang</span> Kami</h2>
+
+    <div class="row">
+      <!-- Gambar Tentang Kami -->
+      <div class="about-img">
+        <img src="img/about..jpg" alt="Tentang Kami" />
+      </div>
+
+      <!-- Konten Tentang Kami -->
+      <div class="content">
+        <h3>Kenapa Memilih Kedai Kami ?</h3>
+        <p>
+          Kami menawarkan pengalaman yang luar biasa dengan makanan yang berkualitas, layanan yang ramah, dan suasana yang nyaman. Dengan bahan-bahan terbaik, kami selalu berusaha memberikan yang terbaik untuk pelanggan kami. Kami percaya bahwa setiap hidangan haruslah istimewa. Oleh karena itu, kami memperhatikan setiap detail dan memastikan rasa yang lezat di setiap gigitan.
+      </div>
+        </p>
+    </div>
+  </div>
+</section>
+     <!-- About Section End -->
+    
+    <!-- 🔥menu🔥 section start -->
+
+    <section class="menu" id="menu" x-data="menu">
+    <div class="container">
+      <h2 class="section-title"><span>Menu</span> Kami</h2>
+      <p class="section-subtitle">Nikmati berbagai hidangan lezat yang kami tawarkan, disiapkan dengan bahan berkualitas untuk memanjakan lidah Anda. Temukan pilihan favorit Anda di setiap suapan!</p>
+      
+      <div class="row">
+        <template x-for="(item, index) in items" x-key="index">
+          <div class="menu-card">
+            <div class="menu-icons">
+              <!-- Ikon Add to Cart -->
+              <a href="#" @click.prevent="$store.cart.add(item)" class="menu-icon add-to-cart">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <use href="img/feather-sprite.svg#shopping-cart" />
+                </svg>
+              </a>
+
+              <!-- Ikon Eye (untuk melihat detail) -->
+              <a href="#" class="menu-icon item-detail-button" @click.prevent="openDetailModal(item)">
+                <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <use href="img/feather-sprite.svg#eye" />
+                </svg>
+              </a>
+            </div>
+
+            <!-- Gambar Menu -->
+            <div class="menu-image">
+              <img :src="`img/BS/${item.img}`" :alt="item.name">
+            </div>
+
+            <!-- Konten Menu -->
+            <div class="menu-content">
+              <h3 x-text="item.name"></h3>
+              <div class="menu-stars">
+                <svg width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <use href="img/feather-sprite.svg#star" />
+                </svg>
+                <svg width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <use href="img/feather-sprite.svg#star" />
+                </svg>
+                <svg width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <use href="img/feather-sprite.svg#star" />
+                </svg>
+                <svg width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <use href="img/feather-sprite.svg#star" />
+                </svg>
+                <svg width="24" height="24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <use href="img/feather-sprite.svg#star" />
+                </svg>
+              </div>
+
+              <div class="menu-price">
+                <span x-text="rupiah(item.price)"></span>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+    </div>
+  </section>
+
+    <!-- 🔥menu🔥 section end -->
+    
+    <!-- marketplace Section Start -->
+     <section id="marketplace" class="marketplace">
+      <h2><span>Marketplace</span> Kami</h2>
+      <p>Temukan berbagai makanan terbaik dengan harga yang terbaik di marketplace kami. semuanya ada di sini untuk memenuhi kebutuhan perut Anda dengan mudah dan cepat!</p>
+      <div class="row">
+  <a href="https://shopee.co.id/m/shopeefood" class="marketplace-card-link" target="_blank" rel="noopener noreferrer">
+    <div class="marketplace-card">
+      <img src="img/MP/1.webp" alt="Ayam Goreng Tampah" class="marketplace-card-img">
+      <button class="marketplace-card-tombol">Beli di ShopeeFood</button>
+      <!-- <p class="menu-card-price">IDR 20K</p> -->
+    </div>
+  </a>
+  <a href="https://www.grab.com/id/food/" class="marketplace-card-link" target="_blank" rel="noopener noreferrer">
+    <div class="marketplace-card">
+      <img src="img/MP/2.jpg" alt="Ayam Bakar Tampah" class="marketplace-card-img">
+      <button class="marketplace-card-tombol">Beli di GrabFood</button>
+      <!-- <p class="menu-card-price">IDR 20K</p> -->
+    </div>
+  </a>
+  <a href="https://gofood.co.id/" class="marketplace-card-link" target="_blank" rel="noopener noreferrer">
+    <div class="marketplace-card">
+      <img src="img/MP/3.jpg" alt="Ayam Bakar Tampah" class="marketplace-card-img">
+      <button class="marketplace-card-tombol">Beli di GoFood</button>
+      <!-- <p class="menu-card-price">IDR 20K</p> -->
+    </div>
+  </a>
+</div>
+</div> 
+ 
+     </section>
+    <!-- marketplace Section End -->
+
+    <!-- Contact Section Start -->
+
+    <section id="contact" class="contact">
+  <div class="container">
+    <h2 class="section-title"><span>Kontak</span> Kami</h2>
+    <p class="section-subtitle">Ada pertanyaan atau ingin bekerjasama ? Hubungi kami melalui form di bawah ini atau kunjungi lokasi kami langsung !</p>
+
+    <div class="row contact-content">
+      <!-- Google Maps Embed -->
+      <div class="contact-map">
+        <iframe 
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3965.759984577512!2d106.86118510000001!3d-6.2952406!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69ed809cedfb33%3A0x6684c8c4fda395b1!2sPONDOK%20DELIMA!5e0!3m2!1sid!2sid!4v1742183249273!5m2!1sid!2sid" 
+          allowfullscreen="" loading="lazy" 
+          referrerpolicy="no-referrer-when-downgrade" 
+          class="map"
+        ></iframe>
+      </div>
+
+      <!-- Contact Form -->
+      <div class="contact-form">
+        <form action="">
+          <div class="input-group">
+            <i data-feather="user"></i>
+            <input type="text" placeholder="Nama" required>
+          </div>
+          <div class="input-group">
+            <i data-feather="mail"></i>
+            <input type="email" placeholder="Email" required>
+          </div>
+          <div class="input-group">
+            <i data-feather="phone"></i>
+            <input type="text" placeholder="No HP" required>
+          </div>
+          <div class="input-group">
+            <i data-feather="message-square"></i>
+            <textarea placeholder="Pesan Anda..." rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn">Kirim Pesan</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+    <!-- Contact Section End -->
+
+    <!-- Footer start -->
+     <footer>
+     <div class="socials">
+  <a href="https://www.instagram.com" target="_blank" rel="noopener noreferrer">
+    <i data-feather="instagram"></i>
+  </a>
+  <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">
+    <i data-feather="twitter"></i>
+  </a>
+  <a href="https://facebook.com" target="_blank" rel="noopener noreferrer">
+    <i data-feather="facebook"></i>
+  </a>
+   <a href="https://wa.me/6285784510300" target="_blank" rel="noopener noreferrer">
+    <img src="img/iconwa.png" alt="whatsapp">
+  </a>
+</div>
+
+
+      <div class="links">
+      <a href="#home">Home</a>
+      <a href="#about">Tentang Kami</a>
+      <a href="#menu">🔥Menu🔥</a>
+      <a href="#marketplace">Marketplace</a>
+      <a href="#contact">Kontak</a>
+      </div>
+
+      <div class="credit">
+        <p>Created by <a href="">adinrosyidina</a>. |&copy 2025.</p>
+      </div>
+     </footer>
+    <!-- Footer end -->
+
+    <!-- Modal Box Item Detail start -->
+     <div class="modal" id="item-detail-modal">
+      <div class="modal-container">
+        <a href="#" class="close-icon"><I data-feather="x"></I></a>
+        <div class="modal-content">
+          <img src="img/BS/1.jpg" alt="produk 1">
+          <div class="product-content">
+            <h3>produk 1</h3>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta nisi alias optio debitis expedita eius consectetur. Temporibus laborum veniam debitis consequatur animi quaerat, incidunt ex.</p>
+            <div class="product-stars">
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+              <i data-feather="star" class="star-full"></i>
+            </div>
+            <div class="product-price">IDR 40K <SPAN>IDR 35K</SPAN></div>
+            <a href="#"><i data-feather="shopping-cart"></i><span>add to cart</span></a>
+          </div>
+        </div>
+      </div>
+     </div>
+    <!-- Modal Box Item Detail end -->
+    
+    <!-- Feather Icons -->
+      <script>
+      feather.replace()
+    </script>
+
+    <!-- My Javascript -->
+     <script src="js/script.js"></script>
+  </body>
+</html>

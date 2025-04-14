@@ -1,0 +1,23 @@
+Array
+(
+    [0] => Array
+        (
+            [id] => 13
+            [name] => Bakso Urat
+            [img] => 13.jpeg
+            [price] => 17000
+            [quantity] => 1
+            [total] => 17000
+        )
+
+    [1] => Array
+        (
+            [id] => 12
+            [name] => Mie Chili oil
+            [img] => 12.jpg
+            [price] => 18000
+            [quantity] => 1
+            [total] => 18000
+        )
+
+)

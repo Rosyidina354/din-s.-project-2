@@ -1,0 +1,8 @@
+Array
+(
+    [items] => [{"id":13,"name":"Bakso Urat","img":"13.jpeg","price":17000,"quantity":1,"total":17000},{"id":12,"name":"Mie Chili oil","img":"12.jpg","price":18000,"quantity":1,"total":18000}]
+    [name] => adin rosyidina
+    [email] => adinrosyidina354bali@gmail.com
+    [phone] => 085784510300
+    [total] => 35000
+)
